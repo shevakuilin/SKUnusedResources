@@ -180,7 +180,9 @@ static NSString * const kResultIdentifyFilePath    = @"FilePath";
         while (index != NSNotFound) {
             if (index < results.count) {
                 ResourceFileInfo *info = [results objectAtIndex:index];
-                [[NSFileManager defaultManager] removeItemAtURL:[NSURL fileURLWithPath:info.path] error:nil];
+//                [[NSFileManager defaultManager] removeItemAtURL:[NSURL fileURLWithPath:info.path] error:nil];
+                // 清理到垃圾桶
+                [[NSFileManager defaultManager] trashItemAtURL:[NSURL fileURLWithPath:info.path] resultingItemURL:nil error:nil];
             }
             index = [selectedIndexSet indexGreaterThanIndex:index];
         }
